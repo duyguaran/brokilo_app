@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // ignore: prefer_const_constructors
         body: Center(
             child: const Text(
-          "Brokilodan Selamlar",
+          "Brokilodan Selamlar,Aleyküm selaaam",
           style: TextStyle(
             fontSize: 50,
             color: Colors.white,

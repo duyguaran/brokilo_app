@@ -1,29 +1,292 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isMale = true;
+  bool isFemale = false;
+  TextEditingController ageController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  double bmi = 0.0;
+  double boy = 0;
+  double kilo = 0;
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
     return Scaffold(
-        backgroundColor: Colors.green,
-        // ignore: prefer_const_constructors
-        body: Center(
-            child: const Text(
-          "Brokilodan Selamlar,Aleyküm selaaam",
-          style: TextStyle(
-            fontSize: 50,
-            color: Colors.white,
-            fontWeight: FontWeight.w800,
-          ),
-        )));
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
+        child: Stack(
+          children: [
+            SafeArea(
+              top: true,
+              child: SingleChildScrollView(
+                child: Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Selam Bro!',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(fontSize: 27, fontWeight: FontWeight.bold, color: Colors.green.shade700),
+                                ),
+                              ),
+                              Text(
+                                'Öncelikle vücut kitle endeksini hesaplayalım',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.green.shade900,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 130,
+                                    width: 180,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          isMale
+                                              ? 'assets/icons/male.png'
+                                              : isFemale
+                                                  ? 'assets/icons/femalee.png'
+                                                  : 'assets/icons/male.png',
+                                        ),
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        'Cinsiyet',
+                                        style: GoogleFonts.poppins(
+                                          textStyle: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.green.shade700,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                isFemale = !isFemale;
+                                                if (isFemale = true) {
+                                                  setState(() {
+                                                    isMale = false;
+                                                  });
+                                                }
+                                              });
+                                            },
+                                            child: Container(
+                                              height: 80,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                color: isFemale ? Colors.pink : Colors.grey,
+                                                borderRadius: BorderRadius.circular(10),
+                                              ),
+                                              child: const Center(
+                                                child: Icon(
+                                                  Icons.female_outlined,
+                                                  color: Colors.white,
+                                                  size: 41,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                isMale = !isMale;
+                                                if (isMale = true) {
+                                                  setState(() {
+                                                    isFemale = false;
+                                                  });
+                                                }
+                                              });
+                                            },
+                                            child: Container(
+                                              height: 80,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                color: isMale ? Colors.black : Colors.grey,
+                                                borderRadius: BorderRadius.circular(10),
+                                              ),
+                                              child: const Center(
+                                                child: Icon(
+                                                  Icons.male_outlined,
+                                                  color: Colors.white,
+                                                  size: 41,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                'Yaş',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green.shade700,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                height: 90,
+                                width: 150,
+                                child: TextField(
+                                  keyboardType: TextInputType.number,
+                                  controller: ageController,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'Boy (m)',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green.shade700,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                height: 90,
+                                width: 150,
+                                child: TextField(
+                                  keyboardType: TextInputType.number,
+                                  controller: heightController,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'Ağırlık (kg)',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green.shade700,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                height: 90,
+                                width: 150,
+                                child: TextField(
+                                  keyboardType: TextInputType.number,
+                                  controller: weightController,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            boy = double.parse(heightController.text);
+                            kilo = double.parse(weightController.text);
+                            bmi = kilo / (boy * boy);
+                          });
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 1.1,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.green.shade200,
+                                Colors.green.shade400,
+                              ],
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'BMI Hesapla',
+                              style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 19,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

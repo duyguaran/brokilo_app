@@ -20,9 +20,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green.shade200,
+        title: Center(
+          child: Text(
+            "Brokilo",
+            style: GoogleFonts.poppins(
+              textStyle: TextStyle(fontSize: 27, fontWeight: FontWeight.bold, color: Colors.green.shade700),
+            ),
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
         child: Stack(
           children: [
             SafeArea(
@@ -58,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 15,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        height: 10,
+                                        height: 5,
                                       ),
                                       Row(
                                         children: [
@@ -164,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                               const SizedBox(
-                                height: 15,
+                                height: 10,
                               ),
                               Text(
                                 'Yaş',
@@ -177,11 +188,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 5,
                               ),
                               SizedBox(
                                 height: 90,
-                                width: 150,
+                                width: 250,
                                 child: TextField(
                                   keyboardType: TextInputType.number,
                                   controller: ageController,
@@ -201,11 +212,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 5,
                               ),
                               SizedBox(
                                 height: 90,
-                                width: 150,
+                                width: 250,
                                 child: TextField(
                                   keyboardType: TextInputType.number,
                                   controller: heightController,
@@ -225,11 +236,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 5,
                               ),
                               SizedBox(
                                 height: 90,
-                                width: 150,
+                                width: 250,
                                 child: TextField(
                                   keyboardType: TextInputType.number,
                                   controller: weightController,
@@ -245,35 +256,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      GestureDetector(
-                        onTap: () {
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green.shade400, // background
+                          onPrimary: Colors.white, // foreground
+                        ),
+                        onPressed: () {
                           setState(() {
                             boy = double.parse(heightController.text);
                             kilo = double.parse(weightController.text);
                             bmi = kilo / (boy * boy);
                           });
                         },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 1.1,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.green.shade200,
-                                Colors.green.shade400,
-                              ],
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'BMI Hesapla',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 19,
-                                  letterSpacing: 1.2,
-                                ),
+                        child: Center(
+                          child: Text(
+                            'Hesapla',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 19,
+                                letterSpacing: 1.2,
                               ),
                             ),
                           ),

@@ -14,9 +14,9 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController ageController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
-  double bmi = 0.0;
-  double boy = 0;
-  double kilo = 0;
+  double bmi = 0;
+  int boy = 0;
+  int kilo = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -262,10 +262,28 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPrimary: Colors.white, // foreground
                         ),
                         onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text(bmi.toString()),
+                                content: Text('Vücut kitle endeks değeriniz'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Kapat'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                           setState(() {
-                            boy = double.parse(heightController.text);
-                            kilo = double.parse(weightController.text);
+                            boy = int.parse(heightController.text);
+                            kilo = int.parse(weightController.text);
                             bmi = kilo / (boy * boy);
+                            bmi = bmi * 10000;
                           });
                         },
                         child: Center(
